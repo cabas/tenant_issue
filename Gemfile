@@ -61,3 +61,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Gems for issue
+gem 'acts_as_tenant', '~> 1.0', '>= 1.0.1'

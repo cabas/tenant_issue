@@ -11,5 +11,13 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    def setup
+      @account = Account.create(name: "dummy")
+      ActsAsTenant.current_tenant = @account
+    end
+
+    def teardown
+      ActsAsTenant.current_tenant = nil
+    end
   end
 end

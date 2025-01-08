@@ -1,24 +1,16 @@
-# README
+# ActsAsTenant issue
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project to replicate an issue with acts_as_tenant gem when defining a model with the same name than a tenant model inside a namespace.
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+Here we define a model named `Account` that will act as the tenant, it also defines two models that are tested:
 
-* System dependencies
+- Payment - (test/models/payment_test.rb)
+- External::Transaction - (test/models/external/transaction_test.rb)
 
-* Configuration
+Each of these makes use of acts_as_tenant.
 
-* Database creation
+If we later add an additional model `External::Account` it makes the `External::Transaction` model to not assign the tenant correctly, moreover it assigns the `account_id` but when accessing the `account` object it returns nil.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you delete the `app/models/external/account.rb` file the tests pass correctly.
